@@ -1,4 +1,4 @@
-package creacionales.singleton;
+package creacionales.singleton.v1;
 
 import java.lang.reflect.Constructor;
 
@@ -7,6 +7,9 @@ public class Main {
 
     public Main() {
         System.out.println("Creando...");
+        if(instancia != null){
+            throw new RuntimeException("");
+        }
     }
 
     public static Main getInstancia() {
@@ -20,8 +23,7 @@ public class Main {
 
         print("s1", s1);
         print("s2", s2);
-        Class clazz
-                = Class.forName("com.dev.dp.creational.singleton.SingletonR");
+        Class clazz = Class.forName("com.dev.dp.creational.singleton.SingletonR");
         Constructor<Main> ctor = clazz.getDeclaredConstructor();
         ctor.setAccessible(true);
         Main s3 = ctor.newInstance();
@@ -29,6 +31,6 @@ public class Main {
     }
 
     static void print(String name, Main obj) {
-        System.out.println(String.format("Objeto: %s, Codigo Hash: ", name, obj.hashCode()));
+        System.out.println(String.format("Objeto: %s, Codigo Hash: %s", name, obj.hashCode()));
     }
 }
